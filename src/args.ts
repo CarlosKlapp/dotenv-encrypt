@@ -39,7 +39,7 @@ export const parseArgs = (argv: string[]) => {
         .option("output", { describe: "Output folder", alias: "o", type: "string" })
         .option("jsonOutput", {
             describe: "Write the results to the file in JSON format",
-            default: "dotenv_encrypt_log.json",
+            default: "dotenv-encrypt_log.json",
             alias: "jo",
         })
         .option("backupFolder", {

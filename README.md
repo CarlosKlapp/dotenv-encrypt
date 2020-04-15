@@ -1,4 +1,4 @@
-# dotenv_encrypt
+# dotenv-encrypt
 
 Encrypt and decrypt individual lines inside a .env file. Supports multiple environments. Encryption keys can be read from a text file or from the environment.
 
@@ -53,6 +53,44 @@ CIPHERED__TEST__SESSION_SECRET=AAAAAAAAAAAAAAAA.6xal+yDKO/4bnAzadSwPXiS14w==.zHz
 - CIPHERED__DEV__SESSION_SECRET=AAAAAAAAAAAAAAAA.MndptYojylf1fOfwdz56sWiC.R+b7yj0gUGNM2ZhvynKM/A==
 + UNENCRYPTED__DEV__SESSION_SECRET=dev session secret
 CIPHERED__PROD__SESSION_SECRET=AAAAAAAAAAAAAAAA.8fxYOsLT/KGUwNrNXepufxIN4w==.EP1+C5B5V+IuM3j3c/7VdQ==
+```
+
+### Usage tip #1: Using a common key for all environments
+
+If you have information common to all environments, you can create a specific encryption key just for that information.
+
+```shell
+DOTENV_ENC_KEY__ALL=VRd/lYPCt6uV0NgiRSlFmzMKAaGdhWkItWHvkOUIIfQ=
+UNENCRYPTED__ALL__VARIABLE_COMMON_TO_ALL_ENVIRONMENTS=common info for all environments
+```
+
+### Usage tip #2: wildcard
+
+Writing _WILDCARD_ as the key name, `dotenv-encrypt` will try all the encryption keys.
+
+For example, CIPHERED\_\_WILDCARD\_\_MONGODB_CONN_URI, will try all the encryption keys:
+
+-   DOTENV_ENC_KEY\_\_LOCAL
+-   DOTENV_ENC_KEY\_\_DEV
+-   DOTENV_ENC_KEY\_\_TEST
+-   DOTENV_ENC_KEY\_\_PROD
+
+##### Example
+
+Use the CIPHERED\_\_**WILDCARD**\_\_MONGODB_CONN_URI entry to connect to your various MongoDb servers regardless of the environment you are running in.
+
+Copy the encrypted value `tm/NnqfiLJrEck+e.hQnpgKjoST/EuGd6T+wEg+LUOSiQh/F18JlQNgVAdT/h/zO+yOsb2W/C9R6p/iV7xgL5ZXQOxWDhfmRUTCVXnw==.3CkkMVRSbUOsHiHW0xgIWg==` from _CIPHERED\_\_TEST\_\_MONGODB_CONN_URI_ to _CIPHERED\_\_WILDCARD\_\_MONGODB_CONN_URI_
+
+```diff
+CIPHERED__TEST__MONGODB_CONN_URI=tm/NnqfiLJrEck+e.hQnpgKjoST/EuGd6T+wEg+LUOSiQh/F18JlQNgVAdT/h/zO+yOsb2W/C9R6p/iV7xgL5ZXQOxWDhfmRUTCVXnw==.3CkkMVRSbUOsHiHW0xgIWg==
++ CIPHERED__WILDCARD__MONGODB_CONN_URI=tm/NnqfiLJrEck+e.hQnpgKjoST/EuGd6T+wEg+LUOSiQh/F18JlQNgVAdT/h/zO+yOsb2W/C9R6p/iV7xgL5ZXQOxWDhfmRUTCVXnw==.3CkkMVRSbUOsHiHW0xgIWg==
+```
+
+This will be appear in your `process.env` as `UNENCRYPTED__WILDCARD__MONGODB_CONN_URI`
+
+```js
+console.log(process.env["UNENCRYPTED__WILDCARD__MONGODB_CONN_URI"]);
+> mongodb://<mlab_user>:<mlab_password>@<mlab_connection_url_test>
 ```
 
 ### Easily generate new keys
@@ -110,11 +148,12 @@ Authentication Tag (base64 encoding): gr+I4brHK7EcCSWdB01EIg==
 
 ### Ciphered dotenv variables
 
-| Full text                                                                                                     | Prefix   | Separator | Encryption key name | Separator | Variable Name  | Equal sign | Value                                                                  | Uses this encryption key (see table above)   |
-| ------------------------------------------------------------------------------------------------------------- | -------- | :-------: | ------------------- | :-------: | -------------- | :--------: | ---------------------------------------------------------------------- | -------------------------------------------- |
-| CIPHERED\_\_KEY_NAME\_\_SESSION_SECRET=P/qFaEaLinQlpN0J.YA+s/bm/i7ATXTNC6xk1T0QD9Q==.X6LMY5Ihl4jVuelLVan50A== | CIPHERED |   \_\_    | KEY_NAME            |   \_\_    | SESSION_SECRET |     =      | P/qFaEaLinQlpN0J.YA+s/bm/i7ATXTNC6xk1T0QD9Q==.X6LMY5Ihl4jVuelLVan50A== | VRd/lYPCt6uV0NgiRSlFmzMKAaGdhWkItWHvkOUIIfQ= |
-| CIPHERED\_\_DEV\_\_SESSION_SECRET=08W5CnmckwGwGMiK.HbQljYHWzkVdjpntPP6Obk+g.MMyAlD+wJR57xN+MwNRXnQ==          | CIPHERED |   \_\_    | DEV                 |   \_\_    | SESSION_SECRET |     =      | 08W5CnmckwGwGMiK.HbQljYHWzkVdjpntPP6Obk+g.MMyAlD+wJR57xN+MwNRXnQ==     | DA2Yj8nc383NOBLsWBT7LH22ooU5YxdZTyiSYa6d2rY= |
-| CIPHERED\_\_PROD\_\_SESSION_SECRET=u6nMOBh8dsph+ccL.s/LPl2ZEYUqlOm7jruDBv3z3qA==.QbXFaAwm/SzOQk/HEqRbXg==     | CIPHERED |   \_\_    | PROD                |   \_\_    | SESSION_SECRET |     =      | u6nMOBh8dsph+ccL.s/LPl2ZEYUqlOm7jruDBv3z3qA==.QbXFaAwm/SzOQk/HEqRbXg== | 1J5L9wJrfOnLo/0M62q+az43wDjiLfvXw9UZlV0mMCo= |
+| Full text                                                                                                     | Prefix   | Separator | Encryption key name                         | Separator | Variable Name  | Equal sign | Value                                                                  | Uses this encryption key (see table above)                                  |
+| ------------------------------------------------------------------------------------------------------------- | -------- | :-------: | ------------------------------------------- | :-------: | -------------- | :--------: | ---------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| CIPHERED\_\_KEY_NAME\_\_SESSION_SECRET=P/qFaEaLinQlpN0J.YA+s/bm/i7ATXTNC6xk1T0QD9Q==.X6LMY5Ihl4jVuelLVan50A== | CIPHERED |   \_\_    | KEY_NAME                                    |   \_\_    | SESSION_SECRET |     =      | P/qFaEaLinQlpN0J.YA+s/bm/i7ATXTNC6xk1T0QD9Q==.X6LMY5Ihl4jVuelLVan50A== | VRd/lYPCt6uV0NgiRSlFmzMKAaGdhWkItWHvkOUIIfQ=                                |
+| CIPHERED\_\_DEV\_\_SESSION_SECRET=08W5CnmckwGwGMiK.HbQljYHWzkVdjpntPP6Obk+g.MMyAlD+wJR57xN+MwNRXnQ==          | CIPHERED |   \_\_    | DEV                                         |   \_\_    | SESSION_SECRET |     =      | 08W5CnmckwGwGMiK.HbQljYHWzkVdjpntPP6Obk+g.MMyAlD+wJR57xN+MwNRXnQ==     | DA2Yj8nc383NOBLsWBT7LH22ooU5YxdZTyiSYa6d2rY=                                |
+| CIPHERED\_\_PROD\_\_SESSION_SECRET=u6nMOBh8dsph+ccL.s/LPl2ZEYUqlOm7jruDBv3z3qA==.QbXFaAwm/SzOQk/HEqRbXg==     | CIPHERED |   \_\_    | PROD                                        |   \_\_    | SESSION_SECRET |     =      | u6nMOBh8dsph+ccL.s/LPl2ZEYUqlOm7jruDBv3z3qA==.QbXFaAwm/SzOQk/HEqRbXg== | 1J5L9wJrfOnLo/0M62q+az43wDjiLfvXw9UZlV0mMCo=                                |
+| CIPHERED\_\_WILDCARD\_\_SESSION_SECRET=u6nMOBh8dsph+ccL.s/LPl2ZEYUqlOm7jruDBv3z3qA==.QbXFaAwm/SzOQk/HEqRbXg== | CIPHERED |   \_\_    | try all the encryption keys when decrypting |   \_\_    | SESSION_SECRET |     =      | u6nMOBh8dsph+ccL.s/LPl2ZEYUqlOm7jruDBv3z3qA==.QbXFaAwm/SzOQk/HEqRbXg== | decryption successful with key 1J5L9wJrfOnLo/0M62q+az43wDjiLfvXw9UZlV0mMCo= |
 
 ### Why UNENCRYPTED and CIPHERED
 
@@ -149,7 +188,7 @@ DOTENV_ENC_KEY__VERY_LONG_NAME=nLseXPYWho9TF1x+lOnC7EkwijvMd0RQMa5IWLhzN2A=
 Using npm:
 
 ```shell
-$ npm i dotenv_encrypt
+$ npm i dotenv-encrypt
 ```
 
 Note: add --save if you are using npm < 5.0.0
@@ -215,29 +254,29 @@ CIPHERED__DEV__EMAIL_API=LxhVW3OmYt+dpH/m.1RPR6EHpbeeIYwt/Hukn2fm/BGGp+k+4bRB2/8
 
 ### Test a file to see which variables can and cannot be decrypted
 
-The results of the test are written to the file `dotenv_encrypt_log.json`
+The results of the test are written to the file `dotenv-encrypt_log.json`
 
 ```shell
 $ dotenc test --file .env
-$ cat dotenv_encrypt_log.json
+$ cat dotenv-encrypt_log.json
 ```
 
 ### Encrypt an environment file
 
-The results of the encryption are written to the file `dotenv_encrypt_log.json`
+The results of the encryption are written to the file `dotenv-encrypt_log.json`
 
 ```shell
 $ dotenc enc --file .env
-$ cat dotenv_encrypt_log.json
+$ cat dotenv-encrypt_log.json
 ```
 
 ### Decrypt an environment file
 
-The results of the decryption are written to the file `dotenv_encrypt_log.json`
+The results of the decryption are written to the file `dotenv-encrypt_log.json`
 
 ```shell
 $ dotenc dec --file .env
-$ cat dotenv_encrypt_log.json
+$ cat dotenv-encrypt_log.json
 ```
 
 ### Specifying output folders
@@ -246,7 +285,7 @@ The location of the files can be written to distinct folders.
 
 ```shell
 $ dotenc enc --file .env --output ./folder/.env.txt --jsonOutput ./another_folder/output.json --backupFolder ./folder_backups/env.bak
-$ cat dotenv_encrypt_log.json
+$ cat dotenv-encrypt_log.json
 ```
 
 ### Process multiple environment files
@@ -298,7 +337,7 @@ Options:
   --version                      Show version number  [boolean]
   --file, -f                     dotenv file  [array] [default: [".env"]]
   --output, -o                   Output folder  [string]
-  --jsonOutput, --jo             Write the results to the file in JSON format  [default: "dotenv_encrypt_log.json"]
+  --jsonOutput, --jo             Write the results to the file in JSON format  [default: "dotenv-encrypt_log.json"]
   --backupFolder, --bf           Create a backup file in the specified folder.  [default: "."]
   --backup, -b                   create a backup file  [boolean] [default: true]
   --useRelativePaths, --relpath  Use relative folder paths  [boolean] [default: false]

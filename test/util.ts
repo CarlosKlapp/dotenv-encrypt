@@ -1,6 +1,7 @@
 import _ from "lodash";
 import * as JsDiff from "diff";
 import * as deepDiff from "deep-object-diff";
+import { loadBufferFromFile, loadObjectFromFile } from "../src/util";
 
 /**
  * Compare two text files or Buffers are equal.

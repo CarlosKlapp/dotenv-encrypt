@@ -154,10 +154,10 @@ describe("Test utility functions", () => {
     });
 
     it("fileGlob", () => {
-        util.fileGlob(["./test/env_test_files/.env."]).forEach(x =>
+        util.fileGlob(["./test/env_test_files/.env."]).forEach((x) =>
             expect(
-                x.endsWith("/dotenv_encrypt/test/src/.env.mixed") ||
-                    x.endsWith("/dotenv_encrypt/test/src/.env.noerror")
+                x.endsWith("/dotenv-encrypt/test/src/.env.mixed") ||
+                    x.endsWith("/dotenv-encrypt/test/src/.env.noerror")
             ).toBeTrue()
         );
     });
