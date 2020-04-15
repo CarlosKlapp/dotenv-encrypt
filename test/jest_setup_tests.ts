@@ -32,22 +32,22 @@ const expectedFileList: ExpectedFileList[] = [
             "./test/expected_results/.env.noerror.enc.feedback.json",
             "./test/expected_results/.env.noerror.enc.test.feedback.json",
             "./test/expected_results/.env.noerror.enc.txt",
-            "./test/expected_results/dotenv_encrypt_log.main.end_to_end.dec.json",
-            "./test/expected_results/dotenv_encrypt_log.main.end_to_end.enc.json",
-            "./test/expected_results/dotenv_encrypt_log.main.end_to_end.test.json",
-            "./test/expected_results/dotenv_encrypt_log.main.in_place.dec.backup.json",
-            "./test/expected_results/dotenv_encrypt_log.main.in_place.dec.no-backup.json",
-            "./test/expected_results/dotenv_encrypt_log.main.in_place.enc.backup.json",
-            "./test/expected_results/dotenv_encrypt_log.main.in_place.enc.no-backup.json",
+            "./test/expected_results/dotenv-encrypt_log.main.end_to_end.dec.json",
+            "./test/expected_results/dotenv-encrypt_log.main.end_to_end.enc.json",
+            "./test/expected_results/dotenv-encrypt_log.main.end_to_end.test.json",
+            "./test/expected_results/dotenv-encrypt_log.main.in_place.dec.backup.json",
+            "./test/expected_results/dotenv-encrypt_log.main.in_place.dec.no-backup.json",
+            "./test/expected_results/dotenv-encrypt_log.main.in_place.enc.backup.json",
+            "./test/expected_results/dotenv-encrypt_log.main.in_place.enc.no-backup.json",
         ],
     },
 ];
 
 const compareNumberOfExpectedFiles = () => {
-    expectedFileList.forEach(x => {
-        const filesExpected = x.fileList.map(y => path.relative("", y));
+    expectedFileList.forEach((x) => {
+        const filesExpected = x.fileList.map((y) => path.relative("", y));
         const filesFound = fileGlob([x.folder])
-            .map(x => path.relative("", x))
+            .map((x) => path.relative("", x))
             .sort();
 
         if (filesExpected.length !== filesFound.length) {

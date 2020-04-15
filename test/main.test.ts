@@ -137,15 +137,15 @@ describe("Test command line: test, enc, dec", () => {
             "./test/env_test_files/.env.noerror",
             "--no-backup",
             "--jsonOutput",
-            "./test/results/log/dotenv_encrypt_log.main.end_to_end.test.json",
+            "./test/results/log/dotenv-encrypt_log.main.end_to_end.test.json",
             "--useRelativePaths",
         ];
         const args = parseArgs(argString);
         mainImplementation(args, true);
         // Compare JSON output
         let resJsonCompare = compareJsonFile(
-            "./test/expected_results/dotenv_encrypt_log.main.end_to_end.test.json",
-            "./test/results/log/dotenv_encrypt_log.main.end_to_end.test.json"
+            "./test/expected_results/dotenv-encrypt_log.main.end_to_end.test.json",
+            "./test/results/log/dotenv-encrypt_log.main.end_to_end.test.json"
         );
         expect(resJsonCompare.obj1).toEqual(resJsonCompare.obj2);
     });
@@ -158,15 +158,15 @@ describe("Test command line: test, enc, dec", () => {
             "./test/env_test_files/.env.noerror",
             "--backup",
             "--jsonOutput",
-            "./test/results/log/dotenv_encrypt_log.main.end_to_end.test.json",
+            "./test/results/log/dotenv-encrypt_log.main.end_to_end.test.json",
             "--useRelativePaths",
         ];
         const args = parseArgs(argString);
         mainImplementation(args, true);
         // Compare JSON output
         let resJsonCompare = compareJsonFile(
-            "./test/expected_results/dotenv_encrypt_log.main.end_to_end.test.json",
-            "./test/results/log/dotenv_encrypt_log.main.end_to_end.test.json"
+            "./test/expected_results/dotenv-encrypt_log.main.end_to_end.test.json",
+            "./test/results/log/dotenv-encrypt_log.main.end_to_end.test.json"
         );
         expect(resJsonCompare.obj1).toEqual(resJsonCompare.obj2);
     });
@@ -182,7 +182,7 @@ describe("Test command line: test, enc, dec", () => {
             "--backupFolder",
             "./test/results/bak/index/enc/",
             "--jsonOutput",
-            "./test/results/log/dotenv_encrypt_log.main.end_to_end.enc.json",
+            "./test/results/log/dotenv-encrypt_log.main.end_to_end.enc.json",
             "--useRelativePaths",
         ];
         const args = parseArgs(argString);
@@ -216,8 +216,8 @@ describe("Test command line: test, enc, dec", () => {
 
         // Compare JSON output
         let resJsonCompare = compareJsonFile(
-            "./test/expected_results/dotenv_encrypt_log.main.end_to_end.enc.json",
-            "./test/results/log/dotenv_encrypt_log.main.end_to_end.enc.json"
+            "./test/expected_results/dotenv-encrypt_log.main.end_to_end.enc.json",
+            "./test/results/log/dotenv-encrypt_log.main.end_to_end.enc.json"
         );
         expect(resJsonCompare.obj1).toEqual(resJsonCompare.obj2);
     });
@@ -233,7 +233,7 @@ describe("Test command line: test, enc, dec", () => {
             "--backupFolder",
             "./test/results/bak/index/dec/",
             "--jsonOutput",
-            "./test/results/log/dotenv_encrypt_log.main.end_to_end.dec.json",
+            "./test/results/log/dotenv-encrypt_log.main.end_to_end.dec.json",
             "--useRelativePaths",
         ];
         const args = parseArgs(argString);
@@ -267,8 +267,8 @@ describe("Test command line: test, enc, dec", () => {
 
         // Compare JSON output
         let resJsonCompare = compareJsonFile(
-            "./test/expected_results/dotenv_encrypt_log.main.end_to_end.dec.json",
-            "./test/results/log/dotenv_encrypt_log.main.end_to_end.dec.json"
+            "./test/expected_results/dotenv-encrypt_log.main.end_to_end.dec.json",
+            "./test/results/log/dotenv-encrypt_log.main.end_to_end.dec.json"
         );
         expect(resJsonCompare.obj1).toEqual(resJsonCompare.obj2);
     });
@@ -293,7 +293,7 @@ describe.each([
             ".env.noerror",
             ".env.mixed.bak",
             ".env.noerror.bak",
-            "dotenv_encrypt_log.json",
+            "dotenv-encrypt_log.json",
         ].map((x) => rimraf.sync(`${folder}/${x}`, { disableGlob: true }));
 
         fs.copyFileSync("./test/env_test_files/.env.mixed", `${folder}/.env.mixed`);
@@ -348,8 +348,8 @@ describe.each([
         }
 
         let resJsonCompare = compareJsonFile(
-            `./test/expected_results/dotenv_encrypt_log.main.in_place.${operation}.${backupFlag}.json`,
-            `./test/results/out/in_place/${operation}/dotenv_encrypt_log.json`
+            `./test/expected_results/dotenv-encrypt_log.main.in_place.${operation}.${backupFlag}.json`,
+            `./test/results/out/in_place/${operation}/dotenv-encrypt_log.json`
         );
         expect(resJsonCompare.obj1).toEqual(resJsonCompare.obj2);
     });
