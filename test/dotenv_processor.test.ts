@@ -5,7 +5,7 @@ import fs from "fs";
 import dotenv from "dotenv";
 import { Feedback } from "../src/feedback";
 import _ from "lodash";
-import { compareJsonFile, compareTextFile } from "../src/util";
+import { compareJsonFile, compareTextFile } from "./util";
 // import jsdiff from "diff";
 
 interface TestData {

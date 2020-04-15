@@ -3,9 +3,8 @@ import { parseArgs } from "../src/args";
 import { mainImplementation } from "../src/main";
 import dotenv from "dotenv";
 import fs from "fs";
-// import jestdiff from "jest-diff";
 import rimraf from "rimraf";
-import { compareJsonFile, compareTextFile } from "../src/util";
+import { compareJsonFile, compareTextFile } from "./util";
 import mkdirp from "mkdirp";
 
 let mockExit: jest.SpyInstance;
