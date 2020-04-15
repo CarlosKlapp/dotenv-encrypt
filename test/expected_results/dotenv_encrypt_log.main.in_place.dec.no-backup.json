@@ -1,0 +1,117 @@
+[
+    {
+        "dotenvOutputFileName": ".env.mixed",
+        "dotenvSourceFileName": ".env.mixed",
+        "errors": {
+            "cipheredVariableErrors": [
+                "The encryption key name is invalid [CIPHERED__WILDCARD__TOO__MANY__TOKENS] or the value is invalid [MCs42CZWs9pbCoN/.m6Yp3bKFWWt4zyBCAzchiYC+.Rpm7TcSbMcAJsNJGZqe/hg==].",
+                "[CIPHERED__WILDCARD__TOO__MANY__TOKENS] Got 5 tokens on the left side. Expected between 3 and 3"
+            ],
+            "encryptionKeyErrors": [
+                "The encryption key name [DOTENV_ENC_KEY__WILDCARD] is the reserved word [WILDCARD].",
+                "Encryption key [DOTENV_ENC_KEY__TOO_SMALL] is too short. Expected a length of 32 bytes (256bits) and received 30 bytes."
+            ],
+            "errorDecryptingVariables": [
+                "Exception: Variable: [CIPHERED__ALL__CIPHER_BAD_CIPHERED_TEXT], Message: [Unsupported state or unable to authenticate data]",
+                "Exception: Variable: [CIPHERED__ALL__CIPHER_BAD_IV], Message: [Unsupported state or unable to authenticate data]",
+                "Exception: Variable: [CIPHERED__ALL__CIPHER_BAD_TAG], Message: [Unsupported state or unable to authenticate data]",
+                "Exception: Variable: [CIPHERED__LOCAL__BAD_CIPHER], Message: [Invalid authentication tag length: 3]",
+                "Exception: Variable: [CIPHERED__WILDCARD__BAD_CIPHER], Message: [Invalid authentication tag length: 3]",
+                "None of the encryption keys could decrypt [CIPHERED__WILDCARD__BAD_CIPHER]"
+            ],
+            "errorEncryptingVariables": [],
+            "errorValuesDoNotMatch": [
+                "Mismatch between [UNENCRYPTED__ALL__MISMATCH_CIPHER_UNENCRYPTED] and [CIPHERED__ALL__MISMATCH_CIPHER_UNENCRYPTED]. [plain text value]!=[ciphered value]"
+            ],
+            "invalidVariableFormat": [
+                "CIPHERED__WILDCARD__TOO__MANY__TOKENS",
+                "UNENCRYPTED__WILDCARD__SESSION_SECRET"
+            ],
+            "plainTextVariableErrors": [
+                "The encryption key name [UNENCRYPTED__WILDCARD__SESSION_SECRET] is the reserved word [WILDCARD]."
+            ],
+            "plainTextVariables": []
+        },
+        "info": {
+            "encryptedVariables": [
+                "CIPHERED__ALL__CIPHER_BAD_CIPHERED_TEXT",
+                "CIPHERED__ALL__CIPHER_BAD_IV",
+                "CIPHERED__ALL__CIPHER_BAD_TAG",
+                "CIPHERED__ALL__MISMATCH_CIPHER_UNENCRYPTED",
+                "CIPHERED__ALL__MONGODB_CONN_URI",
+                "CIPHERED__DEV__MONGODB_CONN_URI",
+                "CIPHERED__LOCAL__BAD_CIPHER",
+                "CIPHERED__LOCAL__MONGODB_CONN_URI",
+                "CIPHERED__LOCAL__SESSION_SECRET",
+                "CIPHERED__PROD__MONGODB_CONN_URI",
+                "CIPHERED__TEST__MONGODB_CONN_URI",
+                "CIPHERED__WILDCARD__BAD_CIPHER",
+                "CIPHERED__WILDCARD__MONGODB_CONN_URI",
+                "CIPHERED__WILDCARD__SESSION_SECRET"
+            ],
+            "encryptionKeys": [
+                "DOTENV_ENC_KEY__ALL",
+                "DOTENV_ENC_KEY__DEV",
+                "DOTENV_ENC_KEY__LOCAL",
+                "DOTENV_ENC_KEY__PROD",
+                "DOTENV_ENC_KEY__TEST"
+            ],
+            "matchingPlainTextAndCipherValues": [
+                "Match between [UNENCRYPTED__LOCAL__SESSION_SECRET] and [CIPHERED__LOCAL__SESSION_SECRET]"
+            ],
+            "miscellaneous": [],
+            "successfullyDecrypted": [],
+            "successfullyEncrypted": []
+        },
+        "warnings": {
+            "missingEncryptionKeys": [
+                "DOTENV_ENC_KEY__MISSING_KEY"
+            ]
+        }
+    },
+    {
+        "dotenvOutputFileName": ".env.noerror",
+        "dotenvSourceFileName": ".env.noerror",
+        "errors": {
+            "cipheredVariableErrors": [],
+            "encryptionKeyErrors": [
+                "The encryption key name [DOTENV_ENC_KEY__WILDCARD] is the reserved word [WILDCARD].",
+                "Encryption key [DOTENV_ENC_KEY__TOO_SMALL] is too short. Expected a length of 32 bytes (256bits) and received 30 bytes."
+            ],
+            "errorDecryptingVariables": [],
+            "errorEncryptingVariables": [],
+            "errorValuesDoNotMatch": [],
+            "invalidVariableFormat": [],
+            "plainTextVariableErrors": [],
+            "plainTextVariables": []
+        },
+        "info": {
+            "encryptedVariables": [
+                "CIPHERED__ALL__MONGODB_CONN_URI",
+                "CIPHERED__DEV__MONGODB_CONN_URI",
+                "CIPHERED__LOCAL__MONGODB_CONN_URI",
+                "CIPHERED__LOCAL__SESSION_SECRET",
+                "CIPHERED__PROD__MONGODB_CONN_URI",
+                "CIPHERED__TEST__MONGODB_CONN_URI",
+                "CIPHERED__WILDCARD__MONGODB_CONN_URI",
+                "CIPHERED__WILDCARD__SESSION_SECRET"
+            ],
+            "encryptionKeys": [
+                "DOTENV_ENC_KEY__ALL",
+                "DOTENV_ENC_KEY__DEV",
+                "DOTENV_ENC_KEY__LOCAL",
+                "DOTENV_ENC_KEY__PROD",
+                "DOTENV_ENC_KEY__TEST"
+            ],
+            "matchingPlainTextAndCipherValues": [
+                "Match between [UNENCRYPTED__LOCAL__SESSION_SECRET] and [CIPHERED__LOCAL__SESSION_SECRET]"
+            ],
+            "miscellaneous": [],
+            "successfullyDecrypted": [],
+            "successfullyEncrypted": []
+        },
+        "warnings": {
+            "missingEncryptionKeys": []
+        }
+    }
+]

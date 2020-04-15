@@ -1,0 +1,42 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
+        // "plugin:jest/all"
+        // "plugin:jest-formatting/strict"
+    ],
+    "plugins": ["@typescript-eslint/eslint-plugin", "jest", "jest-formatting"],
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "rules": {
+        "semi": ["error", "always"],
+        "quotes": ["error", "double"],
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/no-explicit-any": "error",
+        "@typescript-eslint/no-inferrable-types": [
+            "error",
+            {
+                "ignoreParameters": true
+            }
+        ],
+        "@typescript-eslint/interface-name-prefix": [
+            "error",
+            { "prefixWithI": "always", "allowUnderscorePrefix": true }
+        ],
+        "@typescript-eslint/no-unused-vars": "error",
+        "jest/no-disabled-tests": "warn",
+        "jest/no-focused-tests": "error",
+        "jest/no-identical-title": "error",
+        "jest/prefer-to-have-length": "warn",
+        "jest/valid-expect": "error",
+        "jest-formatting/padding-around-describe-blocks": 2,
+        "jest-formatting/padding-around-test-blocks": 2
+    },
+    "env": {
+        "jest/globals": true
+    }
+}

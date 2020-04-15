@@ -1,0 +1,94 @@
+{
+    "author": "Carlos Klapp",
+    "bin": {
+        "dotenc": "./dist/main.js"
+    },
+    "bugs": {
+        "url": "https://github.com/CarlosKlapp/dotenv_encrypt/issues"
+    },
+    "contributors": [
+        "Carlos Klapp (https://github.com/CarlosKlapp)"
+    ],
+    "dependencies": {
+        "@types/node": "^13.11.1",
+        "assert-plus": "^1.0.0",
+        "dotenv": "^8.2.0",
+        "glob": "^7.1.6",
+        "jose": "^1.25.0",
+        "lodash": "^4.17.15",
+        "yargs": "^15.3.1"
+    },
+    "description": "Encrypt and decrypt individual lines inside a .env file. Supports multiple encryption keys. Keys and dotenv files can be read text file or read from the environment.",
+    "devDependencies": {
+        "@types/assert-plus": "^1.0.4",
+        "@types/diff": "^4.0.2",
+        "@types/glob": "^7.1.1",
+        "@types/jest": "^25.2.1",
+        "@types/lodash": "^4.14.149",
+        "@types/mkdirp": "^1.0.0",
+        "@types/rimraf": "^3.0.0",
+        "@types/yargs": "^15.0.4",
+        "deep-object-diff": "^1.1.0",
+        "diff": "^4.0.2",
+        "eslint-plugin-jest-formatting": "^1.2.0",
+        "jest": "^25.3.0",
+        "jest-diff": "^25.3.0",
+        "jest-extended": "^0.11.5",
+        "mkdirp": "^1.0.4",
+        "npm-check-updates": "^4.1.2",
+        "rimraf": "^3.0.2",
+        "ts-jest": "^25.3.1",
+        "ts-node": "^8.8.2",
+        "typescript": "^3.8.3"
+    },
+    "files": [
+        "/dist"
+    ],
+    "homepage": "https://github.com/CarlosKlapp/dotenv_encrypt#readme",
+    "keywords": [
+        ".env",
+        "config",
+        "decrypt",
+        "dotenv",
+        "encrypt",
+        "env",
+        "environment",
+        "secure",
+        "variables"
+    ],
+    "license": "MIT",
+    "main": "./dist/index.js",
+    "name": "dotenv-encrypt",
+    "publishConfig": {
+        "access": "public"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/CarlosSolrac/dotenv_encrypt.git"
+    },
+    "scripts": {
+        "build": "tsc",
+        "cache_clean": "npm cache clean --force",
+        "cache_use_temp": "npm install --cache /tmp/empty-cache",
+        "cache_verify": "npm cache verify",
+        "cb": "npm run clean && npm run build",
+        "clean": "npm run clean_all",
+        "clean_all": "npm run clean_results && npm run clean_dist",
+        "clean_dist": "rimraf ./dist",
+        "clean_results": "rimraf ./test/results",
+        "del_all": "rimraf ./node_modules ./package-lock.json ./lib ./dist ./coverage",
+        "del_cov": "rimraf ./coverage",
+        "del_dist": "rimraf ./dist",
+        "del_lib": "rimraf ./lib",
+        "del_node_modules": "rimraf ./node_modules ./package-lock.json",
+        "format": "",
+        "jest-clear-cache": "jest --clearCache",
+        "prelink": "npm run cb",
+        "test": "jest --clearCache && npm run clean_results && npm run test_all",
+        "test_all": "jest --coverage --verbose",
+        "ucbl": " npm unlink && npm run cb && npm link",
+        "version": "npm run format && git add -A src"
+    },
+    "types": "dist/index.d.ts",
+    "version": "0.1.0"
+}
