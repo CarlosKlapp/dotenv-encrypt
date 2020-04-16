@@ -47,17 +47,25 @@
     "keywords": [
         ".env",
         "config",
+        "credential",
         "decrypt",
         "dotenv",
         "encrypt",
+        "encrypted",
+        "encryption",
         "env",
         "environment",
+        "keys",
+        "password",
+        "secret",
         "secure",
-        "variables"
+        "security",
+        "token",
+        "variable"
     ],
     "license": "MIT",
     "main": "./dist/index.js",
-    "name": "dotenv-encrypt",
+    "name": "dotencr",
     "publishConfig": {
         "access": "public"
     },
@@ -89,5 +97,5 @@
         "version": "npm run format && git add -A src"
     },
     "types": "dist/index.d.ts",
-    "version": "0.1.0"
+    "version": "1.0.0"
 }

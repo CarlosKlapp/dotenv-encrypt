@@ -1,6 +1,8 @@
-# dotenv-encrypt
+# dotenv-encrypt aka dotencr
 
 Encrypt and decrypt individual lines inside a .env file. Supports multiple environments. Encryption keys can be read from a text file or from the environment.
+
+Uses [dotenv](https://www.npmjs.com/package/dotenv) for reading .env files.
 
 ## Features
 
@@ -188,7 +190,7 @@ DOTENV_ENC_KEY__VERY_LONG_NAME=nLseXPYWho9TF1x+lOnC7EkwijvMd0RQMa5IWLhzN2A=
 Using npm:
 
 ```shell
-$ npm i dotenv-encrypt
+$ npm i dotencr
 ```
 
 Note: add --save if you are using npm < 5.0.0
@@ -198,7 +200,7 @@ Note: add --save if you are using npm < 5.0.0
 **TypeScript**
 
 ```typescript
-import { decryptProcessEnvironment } from "../src/index";
+import { decryptProcessEnvironment } from "dotencr";
 import dotenv from "dotenv";
 
 dotenv.config({ path: ".env" });
@@ -212,7 +214,7 @@ console.log(process.env["UNENCRYPTED__LOCAL__SESSION_SECRET"]);
 **JavaScript**
 
 ```js
-const decryptProcessEnvironment = require("../src/index").decryptProcessEnvironment;
+const decryptProcessEnvironment = require("dotencr").decryptProcessEnvironment;
 const dotenv = require("dotenv");
 
 dotenv.config({ path: ".env" });
@@ -223,6 +225,8 @@ console.log(process.env["UNENCRYPTED__LOCAL__SESSION_SECRET"]);
 ```
 
 ## Command line usage examples
+
+Invoke the application using `dotenc` on the command line.
 
 ### Decrypt a key value pair
 
@@ -445,3 +449,9 @@ copyright Carlos Klapp 2020
     }
 }
 ```
+
+## Why the name
+
+The original package name dotenv-encrypt. But there were name conflicts with NPM. So I chose dotencr. dotenc was available, but it was too close to the name dotenv.
+
+I kept the command line name as dotenc since there isn't a name conflict at the moment.
