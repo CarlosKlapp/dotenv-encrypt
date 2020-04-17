@@ -4,6 +4,24 @@ Encrypt and decrypt individual lines inside a .env file. Supports multiple envir
 
 Uses [dotenv](https://www.npmjs.com/package/dotenv) for reading .env files.
 
+✅ TypeScript support ✅
+
+## Library and command line interface
+
+The library can load and decrypt variables stored in a .env file.
+
+The CLI (command line interface) can encrypt and decrypt entire .env files. It can also test your encrypted .env file for any issues. The CLI generates output in JSON for easy parsing.
+
+## Installation
+
+Using npm:
+
+```shell
+$ npm i dotencr
+```
+
+Note: add --save if you are using npm < 5.0.0
+
 ## Features
 
 ### Transparently decrypt values in your dotenv file
@@ -185,16 +203,6 @@ DOTENV_ENC_KEY__VERY_LONG_NAME=nLseXPYWho9TF1x+lOnC7EkwijvMd0RQMa5IWLhzN2A=
 
 ### 100% test coverage
 
-## Installation
-
-Using npm:
-
-```shell
-$ npm i dotencr
-```
-
-Note: add --save if you are using npm < 5.0.0
-
 ## NodeJS usage examples
 
 **TypeScript**
@@ -231,28 +239,40 @@ Invoke the application using `dotenc` on the command line.
 ### Decrypt a key value pair
 
 ```shell
-$ dotenc kdec CIPHERED__DEV__EMAIL_API=q6M1bArrP6vCQooz.ZUi7rAgMG+KrOOVJ1qKyYB7W/umPFKZTGZ5UIh5JBBGlRTluS2yr.CcggXA5pndStr4MjczcwDg==
+$ dotenc kdec "CIPHERED__DEV__EMAIL_API=q6M1bArrP6vCQooz.ZUi7rAgMG+KrOOVJ1qKyYB7W/umPFKZTGZ5UIh5JBBGlRTluS2yr.CcggXA5pndStr4MjczcwDg=="
 UNENCRYPTED__DEV__EMAIL_API=EM.74f2f09e-7fde-4de8-afd8-82bd5050cc5c
 ```
 
 ### Encrypt a key value pair
 
 ```shell
-$ dotenc kenc UNENCRYPTED__DEV__EMAIL_API=EM.74f2f09e-7fde-4de8-afd8-82bd5050cc5c
+$ dotenc kenc "UNENCRYPTED__DEV__EMAIL_API=EM.74f2f09e-7fde-4de8-afd8-82bd5050cc5c"
 CIPHERED__DEV__EMAIL_API=NLCiZiNCJTsvLDFc.+G+3LS3vuHwxP1X/4ZTbcui05gTVOJcZXqZa0Qz8kwlmocBGwnjT.cBKY+6Jz/eb+A326+a0oVQ==
 ```
 
 ### Decrypt a triple: decryption_key_name variable_name value
 
+`dotenc` can build key value pair for you by just specifying the:
+
+-   decryption key name: **DEV**
+-   variable name: **EMAIL_API**
+-   value: **FhdQgQOC6th8fmti.IBxk8vKOTR4nYHPhDEJVB8ql7EW4rkd/tTxbXREjuMPrsoE0cbxu.JOv1f+AODXEUOUoACmgAQg==**
+
 ```shell
-$ dotenc xdec DEV EMAIL_API FhdQgQOC6th8fmti.IBxk8vKOTR4nYHPhDEJVB8ql7EW4rkd/tTxbXREjuMPrsoE0cbxu.JOv1f+AODXEUOUoACmgAQg==
+$ dotenc xdec DEV EMAIL_API "FhdQgQOC6th8fmti.IBxk8vKOTR4nYHPhDEJVB8ql7EW4rkd/tTxbXREjuMPrsoE0cbxu.JOv1f+AODXEUOUoACmgAQg=="
 UNENCRYPTED__DEV__EMAIL_API=EM.74f2f09e-7fde-4de8-afd8-82bd5050cc5c
 ```
 
 ### Encrypt a triple: decryption_key_name variable_name value
 
+`dotenc` can build key value pair for you by just specifying the:
+
+-   decryption key name: **DEV**
+-   variable name: **EMAIL_API**
+-   value: **EM.74f2f09e-7fde-4de8-afd8-82bd5050cc5c**
+
 ```shell
-$ $ dotenc xenc DEV EMAIL_API EM.74f2f09e-7fde-4de8-afd8-82bd5050cc5c
+$ $ dotenc xenc DEV EMAIL_API "EM.74f2f09e-7fde-4de8-afd8-82bd5050cc5c"
 CIPHERED__DEV__EMAIL_API=LxhVW3OmYt+dpH/m.1RPR6EHpbeeIYwt/Hukn2fm/BGGp+k+4bRB2/87TZ5fzd8/4VOLE.+c3VL3eBERKmpqsrkTU4pg==
 ```
 
@@ -288,7 +308,7 @@ $ cat dotenv-encrypt_log.json
 The location of the files can be written to distinct folders.
 
 ```shell
-$ dotenc enc --file .env --output ./folder/.env.txt --jsonOutput ./another_folder/output.json --backupFolder ./folder_backups/env.bak
+$ dotenc enc --file ".env" --output "./folder/.env.txt" --jsonOutput "./another_folder/output.json" --backupFolder "./folder_backups/env.bak"
 $ cat dotenv-encrypt_log.json
 ```
 
