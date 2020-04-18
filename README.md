@@ -14,13 +14,33 @@ The CLI (command line interface) can encrypt and decrypt entire .env files. It c
 
 ## Installation
 
-Using npm:
+Link to this package on npmjs: https://www.npmjs.com/package/dotencr
+
+### Local installation
+
+Using npm locally:
 
 ```shell
 $ npm i dotencr
 ```
 
 Note: add --save if you are using npm < 5.0.0
+
+To run dotencr without installing it globally, you must use the `npx` command
+
+```shell
+npx dotencr -h
+```
+
+### Global installation
+
+To use dotencr across your packages, please install it globally
+
+```shell
+$ npm i -g dotencr
+```
+
+The examples below assume you have installed dotencr globally.
 
 ## Features
 
